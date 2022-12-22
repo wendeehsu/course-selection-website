@@ -1,15 +1,23 @@
 from myApp import app, db
-from myApp.models import Track
+import json
+from myApp.models import Track, Course
 
 @app.route("/track")
-def course():
-    print("result")
+def track():
     data = []
-
     for row in Track.query.all():
         data += [{
             'id': row.id,
             'name': row.name
         }]
     
+    return data
+
+@app.route("/course")
+def course():
+    data = []
+    for row in Course.query.all():
+        print(row)
+        data += [row.toObject()]
+
     return data
