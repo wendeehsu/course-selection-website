@@ -5,37 +5,61 @@ import json
 # Database schema:
 # https://dbdiagram.io/d/639cae0f99cb1f3b55a1e7e4
 
-def courseLevel(value):
-    if value == 1:
-        return 'Beginner'
-    if value == 2:
-        return 'Intermediate'
-    return 'Advanced'
+class Track:
+    def __init__(self,obj):
+        self.id = obj.id
+        self.name = obj.name
+    
+    def toObject(self):
+        return {'id':self.id, 'name': self.name}
 
-class Track(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
+class Course:
+    def __init__(self,obj):
+        self.id = obj.id
+        self.name = obj.name
+        self.code = obj.code
+        self.semester = obj.semester
+        self.weekday = self.getWeekday(obj.weekday)
+        self.level = self.courseLevel(obj.level)
+        self.timeslot_start = self.getTime(obj.timeslot_start)
+        self.timeslot_end = self.getTime(obj.timeslot_end)
+        self.overview = obj.overview
+        self.location = obj.location
+        self.mode = self.getMode(obj.mode)
+        self.instructor = {'id': obj.instructor_id, 'name': obj.instructor_name}
 
-class Course(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
-    code = db.Column(db.String(50))
-    semester = db.Column(db.String(50))
-    level = db.Column(db.Integer)
-    timeslot_start = db.Column(db.Time)
-    timeslot_end = db.Column(db.Time)
-    weekday = db.Column(db.Integer) # change to enum
-    mode = db.Column(db.Integer)    # change to enum
-    overview = db.Column(db.String(50))
-    location = db.Column(db.String(50))
+    def getTime(self,value):
+        if value == None:
+            return None
+        return json.dumps(value, default=str).replace('\"','')
+
+    def courseLevel(self,value):
+        dic = {'1':'Beginner', '2':'Intermediate', '3': 'Advanced'}
+        return dic[str(value)]
+    
+    def getWeekday(self,value):
+        if value == None:
+            return value
+        dic = {'1':'Monday', '2':'Tuesday', '3':'Wednesday',\
+                '4':'Thursday','5':'Friday'}
+        return dic[str(value)]
+    
+    def getMode(self,value):
+        dic = {'1':'In-Person', '2':'Hybrid', '3':'Online'}
+        return dic[str(value)]
 
     def toObject(self):
         return {
             'id': self.id,
             'name': self.name,
+            'code': self.code,
+            'semester': self.semester,
+            'weekday': self.weekday,
             'level': self.level,
-            'timeslot_start': json.dumps(self.timeslot_start, default=str).replace('\"',''),
-            'timeslot_end': json.dumps(self.timeslot_end, default=str).replace('\"',''),
+            'timeslot_start': self.timeslot_start,
+            'timeslot_end': self.timeslot_end,
             'overview': self.overview,
-            'location': self.location
+            'location': self.location,
+            'mode': self.mode,
+            'instructor': self.instructor
         }
