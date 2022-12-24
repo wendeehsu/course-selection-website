@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+// import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Index from './container';
+
+// import some css here
 
 function App() {
-  const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/course").then(
-  //     res => res.json()
-  //   ).then(
-  //     data => {
-  //       setData(data['course'])
-  //       console.log(data)
-  //     }
-  //   )
-  // })
-
   return (
-    <div>
-      {(typeof data == 'undefined') ? (
-        <p>Loading...</p>
-      ) : (
-        data.map((course, i) => (
-          <p key={i}>{course}</p>
-        ))
-      )}
-    </div>
+    <BrowserRouter>
+      <div>
+        navbar
+      </div>
+      <Routes>
+        {/* <Route path="/" component={} /> */}
+        <Route path="/" element={<Index />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
