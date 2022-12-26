@@ -1,0 +1,62 @@
+.navMenu {
+    background-color: var(--blue-dark);
+    padding: 20px 25px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-right: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+nav a:hover {
+    color: var(--blue-main);
+}
+
+.navMenu .dot {
+    margin-top: 2px;
+    width: 0px;
+    height: 2px;
+    background: var(--blue-main);
+    border-radius: 2px;
+    opacity: 0;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .navMenu a:nth-child(1):hover ~ .dot {
+    width: 55px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(2):hover ~ .dot {
+    width: 70px;
+    -webkit-transform: translateX(74px);
+    transform: translateX(74px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(3):hover ~ .dot {
+    width: 95px;
+    -webkit-transform: translateX(163px);
+    transform: translateX(163px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(4):hover ~ .dot {
+    width: 80px;
+    -webkit-transform: translateX(278px);
+    transform: translateX(278px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
