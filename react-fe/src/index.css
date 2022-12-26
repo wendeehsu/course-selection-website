@@ -13,6 +13,7 @@ code {
 }
 
 :root {
+  /* color */
   --blue-dark: #003294;
   --blue-dark-secondary: #2257BF;
   --blue-main: #00B2FF;
@@ -24,4 +25,15 @@ code {
   --white: #fff;
 
   --red: #FF0000;
+
+  /* font-size */
+  --font-size-helper: 14px;
+  --font-size-body: 16px;
+  --font-size-h3: 20px;
+  --font-size-h2: 25px;
+  --font-size-h1: 49px;
+}
+
+p {
+  font-size: var(--font-size-body);
 }
