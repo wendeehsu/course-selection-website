@@ -1,0 +1,66 @@
+:root {
+    --rad: 22px;
+    --dur: .3s;
+    --btn-width: 3rem;
+    --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.search-section {
+    position: absolute;
+    bottom: 40px;
+    width: 60%;
+}
+
+form {
+    position: relative;
+    width: 100%;
+    border-radius: var(--rad);
+    color: white;
+    background-color: var(--blue-main);
+}
+
+input, button {
+    height: 44px;
+    border: 0;
+}
+
+input[type="search"] {
+    outline: 0;
+    width: 100%;
+    padding: 0 1rem;
+    border-radius: var(--rad);
+    transition: all var(--dur) var(--bez);
+    transition-property: width, border-radius;
+    position: relative;
+    background-color: white;
+}
+
+button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--btn-width);
+    background: var(--blue-main);
+    border-radius: 0 var(--rad) var(--rad) 0;
+    color: white;
+}
+
+input:not(:placeholder-shown) {
+    border-radius: var(--rad) 0 0 var(--rad);
+    width: calc(100% - var(--btn-width));
+}
+
+input:not(:placeholder-shown) + button {
+    display: block;
+    cursor: pointer;
+}
+
+button > svg {
+    vertical-align: middle;
+}

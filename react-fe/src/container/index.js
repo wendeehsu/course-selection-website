@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import SearchBar from '../component/ui/searchBar';
+import '../style/page/home.css';
 
 function Index() {
-    console.log("!!!");
     return (
         <>
-            <h1>
-                This is a container.
-            </h1>
+            <div className='top-section'>
+                <SearchBar
+                    title="Look for a course"
+                    placeholder="e.g. Information Architecture"/>
+            </div>
         </>
     )
 }
